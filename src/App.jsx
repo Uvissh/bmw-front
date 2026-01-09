@@ -1,43 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+
 import './App.css'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import Body from './Body'
+import Login from './Login'
+import Profile from './profile'
+
+
 
 function App() {
   return (
-<div className="navbar bg-slate-900 text-slate-100 shadow-sm">
+<>
+<BrowserRouter basename=  "/">
+<Routes>
+  <Route path = "/" element={<Body/>}>
+  <Route path ="/login"element ={<Login/>}/>
+  <Route path ="/profile" element ={<Profile/>}/>
+
   
-  {/* LEFT SIDE */}
-  <div className="navbar-start">
-    <a className="btn btn-ghost text-xl text-cyan-400">
-  BikeTinder
-</a>
-  </div>
+  
+  </Route>
 
-  {/* RIGHT SIDE */}
-  <div className="navbar-end">
-    <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img
-            alt="avatar"
-            src="https://cdn.bikedekho.com/processedimages/bmw/s1000rr/640X309/s1000rr63944bddea0d4.jpg"
-          />
-        </div>
-      </div>
+  </Routes>
 
-      <ul
-  tabIndex={0}
-  className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
->
-  <li><a>Profile</a></li>
-  <li><a>Settings</a></li>
-  <li><a className="text-red-400">Logout</a></li>
-</ul>
-    </div>
-  </div>
 
-</div>
+</BrowserRouter>
+
+
+</>
 
   )
 }
