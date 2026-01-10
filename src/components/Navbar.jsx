@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const user = useSelector((store)=>store.user);
+  console.log(user);
   return (
    <div className="navbar bg-slate-900 text-slate-100 shadow-sm  ">
   
@@ -12,13 +15,20 @@ const Navbar = () => {
   </div>
 
   {/* RIGHT SIDE */}
+
+  {user && (
+
+      
   <div className="navbar-end">
+     Welcome,{user.firstName}
+   
     <div className="dropdown dropdown-end">
+   
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
             alt="avatar"
-            src="https://cdn.bikedekho.com/processedimages/bmw/s1000rr/640X309/s1000rr63944bddea0d4.jpg"
+            src={user.photoUrl}
           />
         </div>
       </div>
@@ -33,8 +43,12 @@ const Navbar = () => {
 </ul>
     </div>
   </div>
+  )}
 
 </div>
+
+
+
 
 
 
