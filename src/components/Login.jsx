@@ -10,6 +10,7 @@ const Login = () => {
 
    const[emailId,setEmailId] = useState("Aprilla@gmail.com");
    const[password,setPassword] = useState("Aprilla@12345");
+   const[error ,setError] = useState("");
 
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -32,7 +33,8 @@ const Login = () => {
     }
 
       catch(err){
-        console.error(err);
+        setError(err?.response?.data|| "something went wrong");
+        console.error(err?.response?.data);
         
       }
     }
@@ -84,6 +86,7 @@ const Login = () => {
 
       {/* Centered Button */}
       <div className="card-actions justify-center mt-4">
+        <div className='text-red-700'>{error}</div>
         <button className="btn bg-black hover:bg-[#0066B1] text-white border-none w-full" onClick={handleLogin}>
           Login
         </button>

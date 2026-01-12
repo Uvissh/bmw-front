@@ -20,10 +20,13 @@ const Navbar = () => {
     try{
 
 
-      await axios.post(BASE_URL + "/logout",{},{withCredentials:true});
+      await axios.post(BASE_URL + "/logout",{
+
+      },{withCredentials:true});
       dispatch(removeUser());
       return navigate("/login");
     }catch(err){
+      console.log(err)
 
     }
 
@@ -34,7 +37,7 @@ const Navbar = () => {
   {/* LEFT SIDE */}
   <div className="navbar-start">
     <a className="btn btn-ghost text-xl text-cyan-400">
-  BikeTinder
+  <Link to={"/"}> BikeTinder</Link>
 </a>
   </div>
 
@@ -61,7 +64,7 @@ const Navbar = () => {
   tabIndex={0}
   className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
 >
-  <li> <Link to="/profile">Profile</Link></li>
+  <li> <Link to={"/profile"}>Profile</Link></li>
   <li><a>Settings</a></li>
   <li><a className="text-red-400" onClick={handleLogout}>Logout</a></li>
 </ul>
