@@ -33,6 +33,10 @@ if(feed) return ;
   getfeed();
  },[])
 
+  if(!feed) return;
+
+    if(feed.length === 0) return <h1>No new user</h1>
+
 
 
 

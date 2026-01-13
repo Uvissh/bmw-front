@@ -1,7 +1,32 @@
 import React from "react";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeFeed } from "../utils/feedSlice";
+import axios from "axios";
+
 
 const UserCard = ({ user }) => {
-  const { firstName, lastName, photoUrl, age, gender, about } = user;
+  const { _id,firstName, lastName, photoUrl, age, gender, about } = user;
+ const  dispatch = useDispatch();
+
+
+  const handleSendReqeust =async(status,userId)=>{
+    try{
+      const res = await axios.post(BASE_URL + "/request/send/" + status +"/"+ userId,
+        {},
+        {
+
+          withCrendentials:true
+        }
+      
+      );
+      dispatch(removeFeed(userId))
+
+    }catch(err){
+      console.log(err)
+    }
+  
+  }
 
   return (
     <div className="flex justify-center">
@@ -44,12 +69,14 @@ const UserCard = ({ user }) => {
           {/* ACTIONS */}
           <div className="card-actions justify-between mt-6">
             {/* Ignore */}
-            <button className="btn btn-error btn-sm text-white shadow-md hover:shadow-lg">
+            <button className="btn btn-error btn-sm text-white shadow-md hover:shadow-lg"
+            onClick={()=>handleSendReqeust("ignored",_id)}>
               Ignore
             </button>
 
             {/* Send */}
-            <button className="btn btn-primary btn-sm shadow-md hover:shadow-lg">
+            <button className="btn btn-primary btn-sm shadow-md hover:shadow-lg"
+            onClick={()=>handleSendReqeust("interested",_id)}>
               Interested
             </button>
 
