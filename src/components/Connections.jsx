@@ -3,6 +3,7 @@ import React, { useEffect, useEffectEvent } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addConnections } from '../utils/connectionSlice'
+import { Link } from 'react-router-dom'
 
 const Connections = () => {
     const connections = useSelector((store)=>store.connection);
@@ -46,7 +47,7 @@ return (
 
     <div className="max-w-4xl mx-auto space-y-6">
       {connections.map((connection) => {
-        const { firstName, lastName, photoUrl, age, gender, about } = connection
+        const { _id,firstName, lastName, photoUrl, age, gender, about } = connection
 
         return (
           <div
@@ -73,6 +74,21 @@ return (
               <p className="mt-2 text-gray-700">
                 {about}
               </p>
+
+<Link to ={"/chat/" + _id}> <button className="
+  relative px-5 py-2 text-sm font-medium text-white
+  rounded-full
+  bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
+  shadow-lg shadow-purple-500/30
+  hover:shadow-xl hover:shadow-purple-500/50
+  hover:scale-105
+  transition-all duration-300
+">
+  💬 Chat
+</button>
+</Link>
+
+
             </div>
           </div>
         )
